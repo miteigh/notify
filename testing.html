@@ -35,6 +35,10 @@
                 console.error('Error:', error);
             });
         });
+        .catch(error => {
+    console.error('Error:', error.response.data); // แสดงข้อมูลข้อผิดพลาด
+});
+
     </script>
 </body>
 </html>
