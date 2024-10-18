@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LINE Notify Example</title>
-
 </head>
 <body>
     <h1>LINE Notify Example</h1>
@@ -28,17 +27,16 @@
                 if (response.ok) {
                     alert('ส่งข้อความสำเร็จ');
                 } else {
-                    alert('ไม่สามารถส่งข้อความได้: ' + response.status);
+                    return response.json().then(data => {
+                        alert('ไม่สามารถส่งข้อความได้: ' + response.status + ' - ' + data.message);
+                    });
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
+                alert('เกิดข้อผิดพลาดในการส่งข้อความ');
             });
         });
-        .catch(error => {
-    console.error('Error:', error.response.data); // แสดงข้อมูลข้อผิดพลาด
-});
-
     </script>
 </body>
 </html>
