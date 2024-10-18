@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINE Notify Example</title>
+
+</head>
+<body>
+    <h1>LINE Notify Example</h1>
+    <button id="notifyBtn">ส่งข้อความ</button>
+
+    <script>
+        document.getElementById("notifyBtn").addEventListener("click", function() {
+            const token = 'DPQdZUFuvTx0rCGnVFuh46NPwt67h5toMAMMWnfOW7nใส่_tokenของคุณที่นี่'; // ใส่ token LINE Notify ของคุณ
+
+            fetch('https://notify-api.line.me/api/notify', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    'message': 'ทดสอบการส่งข้อความผ่าน LINE Notify'  // ข้อความที่ต้องการส่ง
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('ส่งข้อความสำเร็จ');
+                } else {
+                    alert('ไม่สามารถส่งข้อความได้: ' + response.status);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
